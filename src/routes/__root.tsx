@@ -90,7 +90,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content: "Offline calculator for gas, electricity and water bills.",
       },
       { name: "theme-color", content: "#1f6f80" },
-      { name: "mobile-web-app-capable", content: "content=yes" },
+      { name: "mobile-web-app-capable", content: "yes" },
       { name: "apple-mobile-web-app-capable", content: "yes" },
       { name: "apple-mobile-web-app-title", content: "MeterPay" },
       { property: "og:type", content: "website" },
