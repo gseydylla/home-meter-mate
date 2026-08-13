@@ -27,6 +27,8 @@ export default defineConfig({
     plugins: [
       VitePWA({
         strategies: "generateSW",
+        // Client assets are emitted to dist/client, so the SW must land there too
+        outDir: "dist/client",
         registerType: "autoUpdate",
         injectRegister: null,
         filename: "sw.js",
