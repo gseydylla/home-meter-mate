@@ -19,7 +19,12 @@ export function registerServiceWorker() {
     host === "beta.lovable.dev" ||
     host.endsWith(".beta.lovable.dev");
 
-  const refuse = !import.meta.env.PROD || inIframe || previewHost || killSwitch;
+  // Inside the native Android/iOS shell the app is already bundled offline,
+  // so no service worker is needed.
+  const isNative = "Capacitor" in window;
+
+  const refuse =
+    !import.meta.env.PROD || inIframe || previewHost || killSwitch || isNative;
 
   if (refuse) {
     void navigator.serviceWorker.getRegistrations().then((regs) => {
