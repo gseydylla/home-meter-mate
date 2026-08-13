@@ -7,16 +7,20 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 import { VitePWA } from "vite-plugin-pwa";
 
+// Set CAPACITOR=1 to produce a fully static SPA build (dist/client) that can be
+// wrapped into an Android APK with Capacitor and run offline from local files.
+const isCapacitor = process.env["CAPACITOR"] === "1";
+
 export default defineConfig({
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
-    server: { entry: "server" },
-    // Prerender static HTML + an SPA shell so the app can be packaged as a
-    // native Android APK (Capacitor) and run fully offline from local files.
-    spa: { enabled: true },
-    prerender: { enabled: true, crawlLinks: true },
+    ...(isCapacitor ? {} : { server: { entry: "server" } }),
+    ...(isCapacitor
+      ? { spa: { enabled: true }, prerender: { enabled: true, crawlLinks: true } }
+      : {}),
   },
+
   vite: {
     plugins: [
       VitePWA({
