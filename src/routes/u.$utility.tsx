@@ -28,9 +28,9 @@ export const Route = createFileRoute("/u/$utility")({
 });
 
 const ACCENT: Record<UtilityKey, string> = {
-  gas: "bg-gas/15 text-gas-foreground border-gas/40",
-  electric: "bg-electric/15 text-electric-foreground border-electric/40",
-  water: "bg-water/15 text-water-foreground border-water/40",
+  gas: "bg-gas/15 text-gas-foreground dark:text-foreground border-gas/40",
+  electric: "bg-electric/15 text-electric-foreground dark:text-foreground border-electric/40",
+  water: "bg-water/15 text-water-foreground dark:text-foreground border-water/40",
 };
 
 function UtilityPage() {
