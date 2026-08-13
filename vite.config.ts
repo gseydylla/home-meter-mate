@@ -21,6 +21,8 @@ export default defineConfig({
       : {}),
   },
 
+  // Nitro (server deploy output) is not needed for the static Android build.
+  ...(isCapacitor ? { nitro: false as const } : {}),
   vite: {
     plugins: [
       VitePWA({
